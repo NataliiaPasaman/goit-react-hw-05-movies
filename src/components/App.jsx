@@ -27,14 +27,3 @@ export const App = () => {
 '/movies/:movieId' – компонент MovieDetails, сторінка з детальною інформацією про кінофільм.
 /movies/:movieId/cast – компонент Cast, інформація про акторський склад. Рендериться на сторінці MovieDetails.
 /movies/:movieId/reviews – компонент Reviews, інформація про огляди. Рендериться на сторінці MovieDetails. */
-
-
-
-{/* <div
-style={{
-  padding: '25px',
-  fontSize: 40,
-  color: '#010101',
-}}
->
-</div> */}
