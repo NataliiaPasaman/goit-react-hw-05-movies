@@ -1,13 +1,16 @@
 import { movieAPI } from "services/api";
+import { GalleryMovies } from "components/GalleryMovies/GalleryMovies";
+import { useState, useEffect } from "react";
 
 export const Home = () => {
-    const moviesResults = movieAPI();
-    console.log('moviesResults', moviesResults);
-    return(
-        <ul>
-            {/* {moviesResults.map(movie => console.log(movie))} */}
-        </ul>
+    const [movies, setMovies] = useState([]);
+
+    useEffect(() => {
+      movieAPI().then(response => setMovies(response));
+    }, []);
+
+    console.log('movies', movies);
+    return (
+        <GalleryMovies movies={movies} />
     );
 }
-
-// – компонент Home, домашня сторінка зі списком популярних кінофільмів.

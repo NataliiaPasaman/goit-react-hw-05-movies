@@ -8,5 +8,5 @@ export const movieAPI = async () => {
     const data = await response.data;
     const results = await data.results;
 
-    console.log('results', results);
+    return results;
 }
