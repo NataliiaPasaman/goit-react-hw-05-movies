@@ -3,6 +3,7 @@ import { movieAPI } from 'services/api';
 import { GoSearch } from 'react-icons/go';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { SearchForm, Input, Button } from './Movies.styled';
 import { GalleryMovies } from 'components/GalleryMovies/GalleryMovies';
 
 export const Movies = () => {
@@ -29,12 +30,9 @@ export const Movies = () => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <button type="submit">
-          <GoSearch size={20} />
-        </button>
-
-        <input
+      <SearchForm onSubmit={onSubmit}>
+        
+        <Input
           onChange={onSearchChange}
           type="text"
           name={query}
@@ -43,10 +41,12 @@ export const Movies = () => {
           autoFocus
           placeholder="Search movie"
         />
-      </form>
-      <div>
-        {searchMovies.length > 0 && <GalleryMovies movies={searchMovies} />}
-      </div>
+        <Button type="submit">
+          <GoSearch size={20} />
+        </Button>
+
+      </SearchForm>
+      {searchMovies.length > 0 && <GalleryMovies movies={searchMovies} />}
     </>
   );
 };
