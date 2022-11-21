@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const Container = styled.div`
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 30px 20px;
 `;

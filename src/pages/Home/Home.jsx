@@ -1,3 +1,4 @@
+import React from 'react';
 import { movieAPI } from "services/api";
 import { GalleryMovies } from "components/GalleryMovies/GalleryMovies";
 import { useState, useEffect } from "react";
