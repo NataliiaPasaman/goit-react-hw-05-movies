@@ -1,4 +1,5 @@
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import { SharedLayout } from './SharedLayout/SharedLayout';
 import { Home } from 'pages/Home/Home';
 import { Movies } from 'pages/Movies/Movies';
 
@@ -6,13 +7,11 @@ export const App = () => {
 
     return (
       <div>
-        <nav>
-        <Link to="/">Home</Link>
-        <Link to="/movies">Movies</Link>
-        </nav>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            <Route path="movies" element={<Movies />} />
+          </Route>
         </Routes>
       </div>
     );

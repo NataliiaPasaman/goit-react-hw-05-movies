@@ -19,6 +19,8 @@ export const Movies = () => {
 
   const onSubmit = evt => {
     evt.preventDefault();
+    if(!searchQuery) return;
+
     const apiQuery = 'search/movie';
     const paramsQuery = `language=en-US&query=${searchQuery}&page=1&include_adult=false`;
     movieAPI(apiQuery, paramsQuery).then(response => setSearchMovies(response));
