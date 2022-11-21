@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
+import { BASE_POSTER_URL } from "constans/constans";
 
 export const GalleryMoviesItem = ({ movies }) => {
 
@@ -11,7 +12,7 @@ export const GalleryMoviesItem = ({ movies }) => {
         {/* <Link to=""></Link> */}
         <div>
         <img
-          src={poster_path}
+          src={`${BASE_POSTER_URL}/${poster_path}`}
           alt={title}
         />
         </div>

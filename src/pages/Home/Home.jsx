@@ -6,7 +6,8 @@ export const Home = () => {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-      movieAPI().then(response => setMovies(response));
+      const apiQuery = 'trending/movie/week';
+      movieAPI(apiQuery).then(response => setMovies(response));
     }, []);
 
     console.log('movies', movies);
