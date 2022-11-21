@@ -1,24 +1,28 @@
 import React from 'react';
 import { movieAPI } from 'services/api';
 import { GoSearch } from 'react-icons/go';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { GalleryMovies } from 'components/GalleryMovies/GalleryMovies';
-import PropTypes from 'prop-types';
 
 export const Movies = () => {
-  const [query, setQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [searchMovies, setSearchMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const query = searchParams.get("query") ?? "";
 
   const onSearchChange = evt => {
-    setQuery(evt.currentTarget.value);
+    setSearchQuery(evt.currentTarget.value);
+    setSearchParams({ query: evt.target.value });
   };
 
   const onSubmit = evt => {
     evt.preventDefault();
     const apiQuery = 'search/movie';
-    const paramsQuery = `language=en-US&query=${query}&page=1&include_adult=false`;
+    const paramsQuery = `language=en-US&query=${searchQuery}&page=1&include_adult=false`;
     movieAPI(apiQuery, paramsQuery).then(response => setSearchMovies(response));
-    setQuery('');
+    setSearchQuery('');
   };
 
   return (
@@ -31,8 +35,8 @@ export const Movies = () => {
         <input
           onChange={onSearchChange}
           type="text"
-          name="query"
-          value={query}
+          name={query}
+          value={searchQuery}
           autoComplete="off"
           autoFocus
           placeholder="Search movie"
