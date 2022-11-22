@@ -8,3 +8,8 @@ export const movieAPI = async (apiQuery, paramsQuery) => {
 
     return results;
 }
+
+export const getMovieById = async (movieId) => {
+    const MovieResponse = await axios.get(`${BASE_URL}movie/${movieId}?api_key=${KEY}&language=en-US`);
+    return MovieResponse.data;
+}
