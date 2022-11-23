@@ -6,6 +6,7 @@ padding 20px;
 display: flex;
 align-items: flex-start;
 Justify-content: flex-start;
+flex-wrap: wrap;
 `;
 
 export const PosterMovie = styled.img`
@@ -15,8 +16,8 @@ export const PosterMovie = styled.img`
 `;
 
 export const ContainerDescription = styled.div`
-margin-left: 25px;
-padding: 15px;
+margin-left: 40px;
+width: 870px;
 `;
 
 export const MovieTitle = styled.h2`
@@ -27,7 +28,7 @@ export const MovieTitle = styled.h2`
   font-size: 38px;
 `;
 
-export const MovieDate = styled.span`
+export const MovieInfo = styled.span`
 display: block;
 margin-bottom: 10px;
 font-size: 28px;
@@ -38,7 +39,35 @@ font-weight: 700;
 export const Info = styled.p`
 font-size: 20px;
 line-height: 1.8;
-padding: 6px;
+padding: 15px;
 margin-bottom: 40px;
 box-shadow: 3px 5px 16px 4px rgba(227,147,89,0.75);
+`;
+
+export const ContainerDetail = styled.div`
+margin-top: 30px;
+padding 20px;
+box-shadow: 3px 5px 16px 4px rgba(227,147,89,0.75);
+`;
+
+export const TitleDetail = styled.h3`
+width: 1300px;
+padding: 8px;
+margin-bottom: 20px;
+font-size: 20px;
+line-height: 1.5;
+`;
+
+export const ListDetails = styled.ul`
+padding: 8px;
+`;
+
+export const ItemDetails = styled.li`
+padding: 10px;
+font-size: 20px;
+font-weight: 500;
+
+&:hover {
+  background: linear-gradient(to right, #F37335, #FDC830);
+}
 `;

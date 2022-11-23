@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { getMovieById } from 'services/api';
 import { BASE_POSTER_URL } from 'constans/constans';
 import {
@@ -8,19 +10,24 @@ import {
   PosterMovie,
   ContainerDescription,
   MovieTitle,
-  MovieDate,
-  Info,
+  MovieInfo,
+  Info, 
+  ContainerDetail, 
+  TitleDetail, 
+  ListDetails,
+  ItemDetails
 } from 'pages/MovieDetails/MovieDetails.styled';
+import { Cast } from 'components/Cast/Cast';
 
 export const MovieDetails = () => {
-  const [objectMovie, setObjectMovie] = useState({});
+  const [objectMovie, setObjectMovie] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
     getMovieById(id).then(res => setObjectMovie(res));
   }, [id]);
 
-  if (!objectMovie.id) return;
+  if (!objectMovie) return;
 
   const { title, release_date, runtime, overview, genres } = objectMovie;
   const genresMovie = genres.map(genre => genre.name).join(' , ');
@@ -34,15 +41,27 @@ export const MovieDetails = () => {
       <ContainerDescription>
         <MovieTitle>{title} ( {release_date} )</MovieTitle>
         <Info>
-          <MovieDate>Runtime:</MovieDate> {runtime} min
+          <MovieInfo>Runtime:</MovieInfo> {runtime} min
         </Info>
         <Info>
-          <MovieDate>Overview</MovieDate> {overview}
+          <MovieInfo>Overview</MovieInfo> {overview}
         </Info>
         <Info>
-          <MovieDate>Genres</MovieDate> {genresMovie}
+          <MovieInfo>Genres</MovieInfo> {genresMovie}
         </Info>
       </ContainerDescription>
+      <ContainerDetail>
+        <TitleDetail>Additional information</TitleDetail>
+        <ListDetails>
+          <ItemDetails>
+            <Link to="cast">Cast</Link>
+          </ItemDetails>
+          <ItemDetails>
+            <Link to="reviews">Reviews</Link>
+          </ItemDetails>
+        </ListDetails>
+        <Outlet />
+      </ContainerDetail>
     </Container>
   );
 };
