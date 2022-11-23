@@ -9,6 +9,14 @@ Justify-content: flex-start;
 flex-wrap: wrap;
 `;
 
+export const Button = styled.button`
+background-color: orange;
+padding: 15px;
+margin-left: 20px;
+text-align: center;
+width: 60px;
+`;
+
 export const PosterMovie = styled.img`
     display: block;
     width: 450px;

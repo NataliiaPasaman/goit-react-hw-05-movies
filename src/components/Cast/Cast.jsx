@@ -7,9 +7,7 @@ export const Cast = () => {
     // const paramsQuery = 'language=en-US';
     // movieAPI(apiQuery, paramsQuery).then( res => console.log(res));
     return (
-        <>
         <p>Cast Cast Cast</p>
-        </>
     );
 }
 

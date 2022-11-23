@@ -7,6 +7,7 @@ import { getMovieById } from 'services/api';
 import { BASE_POSTER_URL } from 'constans/constans';
 import {
   Container,
+  Button,
   PosterMovie,
   ContainerDescription,
   MovieTitle,
@@ -33,6 +34,8 @@ export const MovieDetails = () => {
   const genresMovie = genres.map(genre => genre.name).join(' , ');
 
   return (
+    <>
+    <Button>Back</Button>
     <Container>
       <PosterMovie
         src={`${BASE_POSTER_URL}/${objectMovie.poster_path}`}
@@ -55,13 +58,15 @@ export const MovieDetails = () => {
         <ListDetails>
           <ItemDetails>
             <Link to="cast">Cast</Link>
+            <Outlet />
           </ItemDetails>
           <ItemDetails>
             <Link to="reviews">Reviews</Link>
+            <Outlet />
           </ItemDetails>
         </ListDetails>
-        <Outlet />
       </ContainerDetail>
     </Container>
+    </>
   );
 };

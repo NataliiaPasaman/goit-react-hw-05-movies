@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { Home } from 'pages/Home/Home';
 import { Movies } from 'pages/Movies/Movies';
@@ -6,7 +7,6 @@ import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
 
 import { Cast } from 'components/Cast/Cast';
 import { Reviews } from 'components/Reviews/Reviews';
-// import NotFound from "path/to/pages/NotFound";
 
 export const App = () => {
 
@@ -20,6 +20,7 @@ export const App = () => {
               <Route paht="cast" element={<Cast />} />
               <Route paht="reviews" element={<Reviews />} />
             </Route>
+            <Route path="*" element={<Navigate to='/' />} />
           </Route>
         </Routes>
       </div>
@@ -28,7 +29,5 @@ export const App = () => {
 
 
 /** У застосунку повинні бути такі маршрути. 
- * Якщо користувач зайшов за неіснуючим маршрутом, його необхідно перенаправляти на домашню сторінку.
-
 /movies/:movieId/cast – компонент Cast, інформація про акторський склад. Рендериться на сторінці MovieDetails.
 /movies/:movieId/reviews – компонент Reviews, інформація про огляди. Рендериться на сторінці MovieDetails. */
