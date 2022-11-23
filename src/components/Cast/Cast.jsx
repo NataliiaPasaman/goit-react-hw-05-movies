@@ -1,5 +1,5 @@
 import React from 'react';
-import { movieAPI } from 'services/api';
+// import { movieAPI } from 'services/api';
 
 export const Cast = () => {
 

@@ -17,7 +17,7 @@ import {
   ListDetails,
   ItemDetails
 } from 'pages/MovieDetails/MovieDetails.styled';
-import { Cast } from 'components/Cast/Cast';
+// import { Cast } from 'components/Cast/Cast';
 
 export const MovieDetails = () => {
   const [objectMovie, setObjectMovie] = useState(null);
