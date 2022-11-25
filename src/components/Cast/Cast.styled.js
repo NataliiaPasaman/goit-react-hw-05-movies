@@ -1,25 +1,28 @@
 import styled from "styled-components";
 
-const CastList = styled.ul`
+export const CastList = styled.ul`
 display: grid;
-max-width: calc(100vw - 18px);
-grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 grid-gap: 20px;
-// margin-top: 20px;
-// margin-bottom: 20px;
+padding-top: 20px;
+padding-bottom: 10px;
+`;
+
+export const CastItem = styled.li`
+border-radius: 2px;
+width: 200px;
 `;
 
 export const PosterCast = styled.img`
 display: block;
-width: 250px;
+width: 200px;
 height: auto;
 `;
 
 export const TitleCast = styled.h4`
 padding: 10px;
-// margin-bottom: 30px;
 color: black;
 font-weight: 700;
-font-size: 14px;
+font-size: 16px;
 line-height: 1.4;
 `;

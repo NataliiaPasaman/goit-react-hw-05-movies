@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { getMovieCast } from 'services/api';
 import { BASE_POSTER_URL } from 'constans/constans';
-import { PosterCast, TitleCast } from './Cast.styled';
+import { PosterCast, TitleCast, CastList, CastItem } from './Cast.styled';
 
 export const Cast = () => {
     const [casts, setCast] = useState(null);
@@ -14,17 +14,17 @@ export const Cast = () => {
 
     if (!casts) return;
     return (
-      <ul>
+      <CastList>
         {casts.map(cast => {
           const { name, original_name, profile_path } = cast;
           return (
-            <li key={name}>
+            <CastItem key={name}>
               <PosterCast src={`${BASE_POSTER_URL}/${profile_path}`} alt={name} />
               <TitleCast>{name || original_name}</TitleCast>
-            </li>
+            </CastItem>
           );
         })}
-      </ul>
+      </CastList>
     );
 }
 

@@ -68,6 +68,7 @@ line-height: 1.5;
 
 export const ListDetails = styled.ul`
 padding: 8px;
+border-bottom: solid 3px tomato;
 `;
 
 export const ItemDetails = styled.li`
