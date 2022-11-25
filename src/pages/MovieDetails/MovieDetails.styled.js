@@ -49,6 +49,7 @@ font-size: 20px;
 line-height: 1.8;
 padding: 15px;
 margin-bottom: 40px;
+text-align: justify;
 box-shadow: 3px 5px 16px 4px rgba(227,147,89,0.75);
 `;
 

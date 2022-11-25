@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { getMovieCast } from 'services/api';
+import { getMovieCastReviews } from 'services/api';
 import { BASE_POSTER_URL } from 'constans/constans';
 import { PosterCast, TitleCast, CastList, CastItem } from './Cast.styled';
 
@@ -9,7 +9,7 @@ export const Cast = () => {
     // console.log('movieId', movieId);
 
     useEffect(() => {
-        getMovieCast().then( res => setCast(res.cast));
+      getMovieCastReviews('credits').then(data => setCast(data.cast));
     }, [])
 
     if (!casts) return;
