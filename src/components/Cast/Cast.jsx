@@ -1,16 +1,16 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { useState, useEffect } from 'react';
 import { getMovieCastReviews } from 'services/api';
 import { BASE_POSTER_URL } from 'constans/constans';
 import { PosterCast, TitleCast, CastList, CastItem } from './Cast.styled';
 
-export const Cast = () => {
+export const Cast = ({ movieId }) => {
     const [casts, setCast] = useState(null);
-    // console.log('movieId', movieId);
 
     useEffect(() => {
-      getMovieCastReviews('credits').then(data => setCast(data.cast));
-    }, [])
+      getMovieCastReviews(movieId, 'credits').then(data => setCast(data.cast));
+    }, [movieId])
 
     if (!casts) return;
     return (
@@ -28,4 +28,6 @@ export const Cast = () => {
     );
 }
 
-// /movies/:movieId/cast – компонент Cast, інформація про акторський склад. Рендериться на сторінці MovieDetails.
+Cast.propTypes = {
+  movieId: PropTypes.string,
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
@@ -19,13 +20,17 @@ import {
   ItemDetails
 } from 'pages/MovieDetails/MovieDetails.styled';
 
-export const MovieDetails = () => {
+export const MovieDetails = ({ getIdMovie }) => {
   const [objectMovie, setObjectMovie] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
     getMovieById(id).then(res => setObjectMovie(res));
   }, [id]);
+
+  const handleClickLink = () => {
+    getIdMovie(id);
+  }
 
   if (!objectMovie) return;
 
@@ -56,15 +61,19 @@ export const MovieDetails = () => {
         <TitleDetail>Additional information</TitleDetail>
         <ListDetails>
           <ItemDetails>
-            <Link to="cast">Cast</Link>
+            <Link to="cast" onClick={handleClickLink}>Cast</Link>
           </ItemDetails>
           <ItemDetails>
-            <Link to="reviews">Reviews</Link>
+            <Link to="reviews" onClick={handleClickLink}>Reviews</Link>
           </ItemDetails>
         </ListDetails>
-        <Outlet />
+        <Outlet/>
       </ContainerDetail>
     </Container>
     </>
   );
 };
+
+MovieDetails.propTypes = {
+  getMovieById: PropTypes.func,
+}
