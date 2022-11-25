@@ -18,7 +18,6 @@ import {
   ListDetails,
   ItemDetails
 } from 'pages/MovieDetails/MovieDetails.styled';
-// import { Cast } from 'components/Cast/Cast';
 
 export const MovieDetails = () => {
   const [objectMovie, setObjectMovie] = useState(null);
@@ -58,13 +57,12 @@ export const MovieDetails = () => {
         <ListDetails>
           <ItemDetails>
             <Link to="cast">Cast</Link>
-            <Outlet />
           </ItemDetails>
           <ItemDetails>
             <Link to="reviews">Reviews</Link>
-            <Outlet />
           </ItemDetails>
         </ListDetails>
+        <Outlet />
       </ContainerDetail>
     </Container>
     </>

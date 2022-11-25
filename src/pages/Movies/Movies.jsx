@@ -15,12 +15,13 @@ export const Movies = () => {
 
   const onSearchChange = evt => {
     setSearchQuery(evt.currentTarget.value);
-    setSearchParams({ query: evt.target.value });
+    setSearchParams(query !== '' ? { query: evt.target.value } : {});
   };
 
   const onSubmit = evt => {
     evt.preventDefault();
     if(!searchQuery) return;
+    if(!searchParams) return;
 
     const apiQuery = 'search/movie';
     const paramsQuery = `language=en-US&query=${searchQuery}&page=1&include_adult=false`;

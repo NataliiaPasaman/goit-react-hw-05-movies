@@ -9,7 +9,7 @@ export const GalleryMoviesItem = ({ movies }) => {
 
     return (
       <MovieItem key={id}>
-        <Link to={`${id}`}>
+        <Link to={`movies/${id}`}>
           <CardWrapper>
             <PosterMovie
               src={`${BASE_POSTER_URL}/${poster_path}`}

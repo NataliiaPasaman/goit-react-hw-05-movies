@@ -17,8 +17,8 @@ export const App = () => {
             <Route index element={<Home />} />
             <Route path="movies" element={<Movies />} />
             <Route path="movies/:id" element={<MovieDetails />}>
-              <Route paht="cast" element={<Cast />} />
-              <Route paht="reviews" element={<Reviews />} />
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
             </Route>
             <Route path="*" element={<Navigate to='/' />} />
           </Route>
@@ -26,8 +26,3 @@ export const App = () => {
       </div>
     );
 }
-
-
-/** У застосунку повинні бути такі маршрути. 
-/movies/:movieId/cast – компонент Cast, інформація про акторський склад. Рендериться на сторінці MovieDetails.
-/movies/:movieId/reviews – компонент Reviews, інформація про огляди. Рендериться на сторінці MovieDetails. */
