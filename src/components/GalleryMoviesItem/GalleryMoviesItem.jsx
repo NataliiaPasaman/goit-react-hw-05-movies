@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
-import { BASE_POSTER_URL } from "constans/constans";
+import { BASE_POSTER_URL, DEFAULT_IMAGE } from "constans/constans";
 import { MovieItem, CardWrapper, MovieName, PosterMovie, MovieRaiting } from "./GalleryMoviesItem.styled";
 
 export const GalleryMoviesItem = ({ movies }) => {
@@ -12,7 +12,7 @@ export const GalleryMoviesItem = ({ movies }) => {
         <Link to={`movies/${id}`}>
           <CardWrapper>
             <PosterMovie
-              src={`${BASE_POSTER_URL}/${poster_path}`}
+              src={poster_path ? `${BASE_POSTER_URL}/${poster_path}` : DEFAULT_IMAGE}
               width="450"
               alt={title}
             />

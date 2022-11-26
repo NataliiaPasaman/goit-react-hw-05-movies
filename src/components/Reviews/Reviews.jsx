@@ -12,6 +12,11 @@ export const Reviews = ({ movieId }) => {
     }, [movieId])
 
     if (!reviews) return;
+    if (reviews === []) {
+        console.log(reviews === []);
+        return <p>'Sorry, but there are no reviews for this movie yet'</p>;
+    };
+
     return (
         <ListReviews>
             {reviews.map(review => {
@@ -24,7 +29,7 @@ export const Reviews = ({ movieId }) => {
                 )
             })}
         </ListReviews>
-    )
+    );
 }
 
 Reviews.propTypes = {

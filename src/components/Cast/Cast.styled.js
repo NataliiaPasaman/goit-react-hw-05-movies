@@ -13,6 +13,11 @@ border-radius: 2px;
 width: 200px;
 `;
 
+export const ImageWrapper = styled.div`
+width: 200px;
+height: 300px;
+`
+
 export const PosterCast = styled.img`
 display: block;
 width: 200px;
