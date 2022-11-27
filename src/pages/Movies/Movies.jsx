@@ -26,7 +26,12 @@ const Movies = () => {
     setLoading(true);
     const apiQuery = 'search/movie';
     const paramsQuery = `language=en-US&query=${query}&page=1&include_adult=false`;
-    movieAPI(apiQuery, paramsQuery).then(response => setSearchMovies(response))
+    movieAPI(apiQuery, paramsQuery).then(response => {
+      setSearchMovies(response); 
+      if(searchMovies.length <= 0) {
+        return alert('No movies for your request');
+      }
+    })
     .catch(error => console.log(error.message))
     .finally(() => setLoading(false));
   };
