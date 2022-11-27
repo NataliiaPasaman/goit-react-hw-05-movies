@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const CastList = styled.ul`
 display: grid;
 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -30,4 +29,13 @@ color: black;
 font-weight: 700;
 font-size: 16px;
 line-height: 1.4;
+`;
+
+export const NoCasts = styled.p`
+margin-top: 25px;
+padding: 10px;
+font-size: 28px;
+font-weight: 700;
+color: Coral;
+text-align: center;
 `;
