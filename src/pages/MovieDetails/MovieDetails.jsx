@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from "prop-types";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { getMovieById } from 'services/api';
 import { BASE_POSTER_URL } from 'constans/constans';
+import { Loader } from 'components/Loader/Loader';
 import {
   Container,
-  Button,
   PosterMovie,
   ContainerDescription,
   MovieTitle,
@@ -20,16 +20,24 @@ import {
   ItemDetails
 } from 'pages/MovieDetails/MovieDetails.styled';
 
-export const MovieDetails = ({ getIdMovie }) => {
+export const MovieDetails = ({ getId }) => {
   const [objectMovie, setObjectMovie] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const location = useLocation();
+
+
+  console.log('location', location);
 
   useEffect(() => {
-    getMovieById(id).then(res => setObjectMovie(res));
+    setLoading(true);
+    getMovieById(id).then(res => setObjectMovie(res))
+    .catch(error => console.log(error.message))
+    .finally(() => setLoading(false));
   }, [id]);
 
   const handleClickLink = () => {
-    getIdMovie(id);
+    getId(id);
   }
 
   if (!objectMovie) return;
@@ -39,7 +47,8 @@ export const MovieDetails = ({ getIdMovie }) => {
 
   return (
     <>
-    <Button>Back</Button>
+    {loading && <Loader />}
+    <Link to="/" state='/movies'>Back to Home</Link>
     <Container>
       <PosterMovie
         src={`${BASE_POSTER_URL}/${objectMovie.poster_path}`}
@@ -75,5 +84,5 @@ export const MovieDetails = ({ getIdMovie }) => {
 };
 
 MovieDetails.propTypes = {
-  getMovieById: PropTypes.func,
+  getId: PropTypes.func,
 }

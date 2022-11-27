@@ -10,7 +10,7 @@ import { Reviews } from 'components/Reviews/Reviews';
 
 export const App = () => {
   const [movieId, setMovieId] = useState('');
-  const getIdMovie = (id) => {setMovieId(id)}
+  const getId = (id) => {setMovieId(id)}
 
     return (
       <div>
@@ -18,7 +18,7 @@ export const App = () => {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
             <Route path="movies" element={<Movies />} />
-            <Route path="movies/:id" element={<MovieDetails getIdMovie={getIdMovie}/>}>
+            <Route path="movies/:id" element={<MovieDetails getId={getId}/>}>
               <Route path="cast" element={<Cast movieId={movieId}/>} />
               <Route path="reviews" element={<Reviews movieId={movieId}/>} />
             </Route>
