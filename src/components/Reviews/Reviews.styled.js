@@ -20,7 +20,7 @@ font-size: 22px;
 font-weight: 700;
 line-height: 1.5;
 text-indent: 2%;
-color: tomato;
+// color: tomato;
 `;
 
 export const PostReviews = styled.p`
@@ -30,4 +30,13 @@ line-height: 1.8;
 text-indent: 4%;
 white-space: normal;
 text-align: justify;
+`;
+
+export const NoReviews = styled.p`
+margin-top: 25px;
+padding: 10px;
+font-size: 28px;
+font-weight: 700;
+color: Coral;
+text-align: center;
 `;
