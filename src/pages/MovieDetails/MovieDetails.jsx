@@ -1,4 +1,5 @@
 import React from 'react';
+import { Suspense } from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from "prop-types";
 import { Link, useLocation } from 'react-router-dom';
@@ -21,7 +22,7 @@ import {
   ItemDetails
 } from 'pages/MovieDetails/MovieDetails.styled';
 
-export const MovieDetails = ({ getId }) => {
+const MovieDetails = ({ getId }) => {
   const [objectMovie, setObjectMovie] = useState(null);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
@@ -75,12 +76,16 @@ export const MovieDetails = ({ getId }) => {
             <Link to="reviews" onClick={handleClickLink}>Reviews</Link>
           </ItemDetails>
         </ListDetails>
-        <Outlet/>
+        <Suspense fallback={<Loader />}>
+          <Outlet/>
+        </Suspense>
       </ContainerDetail>
     </Container>
     </>
   );
 };
+
+export default MovieDetails;
 
 MovieDetails.propTypes = {
   getId: PropTypes.func.isRequired,

@@ -7,7 +7,7 @@ import { Loader } from 'components/Loader/Loader';
 import { SearchForm, Input, Button } from './Movies.styled';
 import { GalleryMovies } from 'components/GalleryMovies/GalleryMovies';
 
-export const Movies = () => {
+const Movies = () => {
   const [searchMovies, setSearchMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -54,3 +54,5 @@ export const Movies = () => {
     </>
   );
 };
+
+export default Movies;

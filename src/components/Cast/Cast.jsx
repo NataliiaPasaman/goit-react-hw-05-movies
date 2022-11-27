@@ -2,26 +2,21 @@ import React from 'react';
 import PropTypes from "prop-types";
 import { useState, useEffect } from 'react';
 import { getMovieCastReviews } from 'services/api';
-import { Loader } from 'components/Loader/Loader';
 import { BASE_POSTER_URL } from 'constans/constans';
 import { PosterCast, TitleCast, CastList, CastItem, ImageWrapper } from './Cast.styled';
 import { DEFAULT_IMAGE } from 'constans/constans';
 
-export const Cast = ({ movieId }) => {
+const Cast = ({ movieId }) => {
     const [casts, setCast] = useState(null);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-      setLoading(true);
       getMovieCastReviews(movieId, 'credits').then(data => setCast(data.cast))
-      .catch((error) => console.log(error.message))
-      .finally(() => setLoading(false));
+      .catch((error) => console.log(error.message));
     }, [movieId])
 
     if (!casts) return;
     return (
       <>
-      {loading && <Loader />}
       <CastList>
         {casts.map(({ name, original_name, profile_path }) => {
           return (
@@ -39,6 +34,8 @@ export const Cast = ({ movieId }) => {
       </>
     );
 }
+
+export default Cast;
 
 Cast.propTypes = {
   movieId: PropTypes.string.isRequired,

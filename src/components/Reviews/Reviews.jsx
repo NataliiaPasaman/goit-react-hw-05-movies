@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { getMovieCastReviews } from 'services/api';
-import { Loader } from 'components/Loader/Loader';
 import {
   ListReviews,
   ItemReviews,
@@ -11,25 +10,21 @@ import {
   NoReviews
 } from './Reviews.styled';
 
-export const Reviews = ({ movieId }) => {
+const Reviews = ({ movieId }) => {
   const [reviews, SetReviews] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     getMovieCastReviews(movieId, 'reviews').then(data =>
       SetReviews(data.results)
     )
-    .catch((error) => console.log(error.message))
-    .finally(() => setLoading(false));
+    .catch((error) => console.log(error.message));
   }, [movieId]);
 
   if (!reviews) return;
 
   return (
     <>
-      {loading && <Loader />}
-      {reviews.length === 0 && (
+    {reviews.length === 0 && (
       <NoReviews>Sorry, but there are no reviews for this movie yet</NoReviews>
       )}
       {reviews && (
@@ -47,6 +42,8 @@ export const Reviews = ({ movieId }) => {
     </>
   );
 };
+
+export default Reviews;
 
 Reviews.propTypes = {
   movieId: PropTypes.string.isRequired,
