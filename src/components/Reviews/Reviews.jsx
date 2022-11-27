@@ -34,8 +34,7 @@ export const Reviews = ({ movieId }) => {
       )}
       {reviews && (
         <ListReviews>
-          {reviews.map(review => {
-            const { author_details, content } = review;
+          {reviews.map(({ author_details, content }) => {
             return (
               <ItemReviews key={author_details.username}>
                 <Username>User: {author_details.username}</Username>
@@ -50,5 +49,5 @@ export const Reviews = ({ movieId }) => {
 };
 
 Reviews.propTypes = {
-  movieId: PropTypes.string,
+  movieId: PropTypes.string.isRequired,
 };

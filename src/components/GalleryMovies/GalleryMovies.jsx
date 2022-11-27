@@ -11,5 +11,5 @@ export const GalleryMovies = ({ movies }) => {
 };
 
 GalleryMovies.propTypes = {
-    movies: PropTypes.array,
+    movies: PropTypes.array.isRequired,
 }

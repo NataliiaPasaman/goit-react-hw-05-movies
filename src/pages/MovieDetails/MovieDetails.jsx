@@ -7,6 +7,7 @@ import { Outlet } from 'react-router-dom';
 import { getMovieById } from 'services/api';
 import { BASE_POSTER_URL } from 'constans/constans';
 import { Loader } from 'components/Loader/Loader';
+import { BackLink } from 'components/BackLink/BackLink';
 import {
   Container,
   PosterMovie,
@@ -25,9 +26,7 @@ export const MovieDetails = ({ getId }) => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const location = useLocation();
-
-
-  console.log('location', location);
+  const backLinkHref = location.state?.from ?? "/";
 
   useEffect(() => {
     setLoading(true);
@@ -48,7 +47,7 @@ export const MovieDetails = ({ getId }) => {
   return (
     <>
     {loading && <Loader />}
-    <Link to="/" state='/movies'>Back to Home</Link>
+    <BackLink to={backLinkHref}>Back</BackLink>
     <Container>
       <PosterMovie
         src={`${BASE_POSTER_URL}/${objectMovie.poster_path}`}
@@ -84,5 +83,5 @@ export const MovieDetails = ({ getId }) => {
 };
 
 MovieDetails.propTypes = {
-  getId: PropTypes.func,
+  getId: PropTypes.func.isRequired,
 }

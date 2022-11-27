@@ -23,8 +23,7 @@ export const Cast = ({ movieId }) => {
       <>
       {loading && <Loader />}
       <CastList>
-        {casts.map(cast => {
-          const { name, original_name, profile_path } = cast;
+        {casts.map(({ name, original_name, profile_path }) => {
           return (
             <CastItem key={name}>
               <ImageWrapper>
@@ -42,5 +41,5 @@ export const Cast = ({ movieId }) => {
 }
 
 Cast.propTypes = {
-  movieId: PropTypes.string,
+  movieId: PropTypes.string.isRequired,
 }
