@@ -2,19 +2,26 @@ import React from 'react';
 import PropTypes from "prop-types";
 import { useState, useEffect } from 'react';
 import { getMovieCastReviews } from 'services/api';
+import { Loader } from 'components/Loader/Loader';
 import { BASE_POSTER_URL } from 'constans/constans';
 import { PosterCast, TitleCast, CastList, CastItem, ImageWrapper } from './Cast.styled';
 import { DEFAULT_IMAGE } from 'constans/constans';
 
 export const Cast = ({ movieId }) => {
     const [casts, setCast] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-      getMovieCastReviews(movieId, 'credits').then(data => setCast(data.cast));
+      setLoading(true);
+      getMovieCastReviews(movieId, 'credits').then(data => setCast(data.cast))
+      .catch((error) => console.log(error.message))
+      .finally(() => setLoading(false));
     }, [movieId])
 
     if (!casts) return;
     return (
+      <>
+      {loading && <Loader />}
       <CastList>
         {casts.map(cast => {
           const { name, original_name, profile_path } = cast;
@@ -30,6 +37,7 @@ export const Cast = ({ movieId }) => {
           );
         })}
       </CastList>
+      </>
     );
 }
 

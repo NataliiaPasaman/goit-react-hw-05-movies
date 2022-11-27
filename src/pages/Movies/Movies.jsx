@@ -2,7 +2,8 @@ import React from 'react';
 import { movieAPI } from 'services/api';
 import { GoSearch } from 'react-icons/go';
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
+import { Loader } from 'components/Loader/Loader';
 import { SearchForm, Input, Button } from './Movies.styled';
 import { GalleryMovies } from 'components/GalleryMovies/GalleryMovies';
 
@@ -10,12 +11,15 @@ export const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchMovies, setSearchMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
+  
+  // const location = useLocation();
 
   const query = searchParams.get("query") ?? "";
 
   const onSearchChange = evt => {
     setSearchQuery(evt.currentTarget.value);
-    setSearchParams(query !== '' ? { query: evt.target.value } : {});
+    setSearchParams({ query: evt.target.value });
   };
 
   const onSubmit = evt => {
@@ -23,9 +27,12 @@ export const Movies = () => {
     if(!searchQuery) return;
     if(!searchParams) return;
 
+    setLoading(true);
     const apiQuery = 'search/movie';
     const paramsQuery = `language=en-US&query=${searchQuery}&page=1&include_adult=false`;
-    movieAPI(apiQuery, paramsQuery).then(response => setSearchMovies(response));
+    movieAPI(apiQuery, paramsQuery).then(response => setSearchMovies(response))
+    .catch(error => console.log(error.message))
+    .finally(() => setLoading(false));
     setSearchQuery('');
   };
 
@@ -47,7 +54,8 @@ export const Movies = () => {
         </Button>
 
       </SearchForm>
-      {searchMovies.length > 0 && <GalleryMovies movies={searchMovies} />}
+      {loading && <Loader />}
+      {searchMovies.length > 0 && !loading && <GalleryMovies movies={searchMovies} />}
     </>
   );
 };
