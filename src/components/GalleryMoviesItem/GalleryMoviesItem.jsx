@@ -5,11 +5,11 @@ import { MovieItem, CardWrapper, MovieName, PosterMovie, MovieRaiting } from "./
 
 export const GalleryMoviesItem = ({ movies }) => {
   return movies.map(movie => {
-    const { id, title, poster_path, vote_average } = movie;
+    const { id, title, original_title, poster_path, vote_average } = movie;
 
     return (
       <MovieItem key={id}>
-        <Link to={`movies/${id}`}>
+        <Link to={`${id}`}>
           <CardWrapper>
             <PosterMovie
               src={poster_path ? `${BASE_POSTER_URL}/${poster_path}` : DEFAULT_IMAGE}
@@ -17,7 +17,7 @@ export const GalleryMoviesItem = ({ movies }) => {
               alt={title}
             />
             <div>
-              <MovieName>{title}</MovieName>
+              <MovieName>{title || original_title}</MovieName>
               <MovieRaiting>Raiting: {vote_average}</MovieRaiting>
             </div>
           </CardWrapper>
