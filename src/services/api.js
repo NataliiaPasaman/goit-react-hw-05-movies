@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { BASE_URL, KEY } from 'constans/constans';
+
+const BASE_URL = 'https://api.themoviedb.org/3/';
+const KEY = '7aad03acd041c1a176849aa04c88bca4';
 
 export const moviesTrendingAPI = async () => {
     const response = await axios.get(`${BASE_URL}trending/movie/week?api_key=${KEY}`);
