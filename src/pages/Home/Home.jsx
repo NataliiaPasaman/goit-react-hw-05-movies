@@ -1,5 +1,5 @@
 import React from 'react';
-import { movieAPI } from "services/api";
+import { moviesTrendingAPI } from "services/api";
 import { useState, useEffect } from "react";
 import { Loader } from 'components/Loader/Loader';
 import { Link } from 'react-router-dom';
@@ -18,8 +18,7 @@ export const Home = () => {
 
     useEffect(() => {
       setLoading(true);
-      const apiQuery = 'trending/movie/week';
-      movieAPI(apiQuery).then(response => setMovies(response))
+      moviesTrendingAPI().then(response => setMovies(response))
       .catch((error) => console.log(error.message))
       .finally(() => setLoading(false));
     }, []);

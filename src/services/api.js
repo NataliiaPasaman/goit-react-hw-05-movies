@@ -1,11 +1,15 @@
 import axios from 'axios';
 import { BASE_URL, KEY } from 'constans/constans';
 
-export const movieAPI = async (apiQuery, paramsQuery) => {
-    const response = await axios.get(`${BASE_URL}${apiQuery}?api_key=${KEY}&${paramsQuery || ''}`);
-    const data = await response.data;
-    const results = await data.results;
+export const moviesTrendingAPI = async () => {
+    const response = await axios.get(`${BASE_URL}trending/movie/week?api_key=${KEY}`);
+    const results = await response.data.results;
+    return results;
+}
 
+export const moviesSearchAPI = async (query) => {
+    const response = await axios.get(`${BASE_URL}search/movie?api_key=${KEY}&language=en-US&query=${query}&page=1&include_adult=false`);
+    const results = await response.data.results;
     return results;
 }
 

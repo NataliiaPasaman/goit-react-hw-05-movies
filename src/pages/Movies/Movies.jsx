@@ -1,5 +1,5 @@
 import React from 'react';
-import { movieAPI } from 'services/api';
+import { moviesSearchAPI } from 'services/api';
 import { GoSearch } from 'react-icons/go';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -24,14 +24,7 @@ const Movies = () => {
     if(!searchParams) return;
 
     setLoading(true);
-    const apiQuery = 'search/movie';
-    const paramsQuery = `language=en-US&query=${query}&page=1&include_adult=false`;
-    movieAPI(apiQuery, paramsQuery).then(response => {
-      setSearchMovies(response); 
-      if(searchMovies.length <= 0) {
-        return alert('No movies for your request');
-      }
-    })
+    moviesSearchAPI(query).then(response => setSearchMovies(response))
     .catch(error => console.log(error.message))
     .finally(() => setLoading(false));
   };
