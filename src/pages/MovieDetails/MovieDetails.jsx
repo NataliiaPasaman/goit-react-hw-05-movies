@@ -36,10 +36,6 @@ const MovieDetails = ({ getId }) => {
     .finally(() => setLoading(false));
   }, [id]);
 
-  const handleClickLink = () => {
-    getId(id);
-  }
-
   if (!objectMovie) return;
 
   const { title, release_date, runtime, overview, genres } = objectMovie;
@@ -70,10 +66,10 @@ const MovieDetails = ({ getId }) => {
         <TitleDetail>Additional information</TitleDetail>
         <ListDetails>
           <ItemDetails>
-            <Link to="cast" onClick={handleClickLink}>Cast</Link>
+            <Link to="cast">Cast</Link>
           </ItemDetails>
           <ItemDetails>
-            <Link to="reviews" onClick={handleClickLink}>Reviews</Link>
+            <Link to="reviews">Reviews</Link>
           </ItemDetails>
         </ListDetails>
         <Suspense fallback={<Loader />}>

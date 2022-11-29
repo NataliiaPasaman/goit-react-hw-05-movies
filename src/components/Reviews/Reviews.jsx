@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieCastReviews } from 'services/api';
 import { Loader } from 'components/Loader/Loader';
@@ -11,18 +11,19 @@ import {
   NoReviews
 } from './Reviews.styled';
 
-const Reviews = ({ movieId }) => {
+const Reviews = () => {
   const [reviews, SetReviews] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
-    getMovieCastReviews(movieId, 'reviews').then(data =>
+    getMovieCastReviews(id, 'reviews').then(data =>
       SetReviews(data.results)
     )
     .catch((error) => console.log(error.message))
     .finally(() => setLoading(false));
-  }, [movieId]);
+  }, [id]);
 
   if (!reviews) return;
 
@@ -49,7 +50,3 @@ const Reviews = ({ movieId }) => {
 };
 
 export default Reviews;
-
-Reviews.propTypes = {
-  movieId: PropTypes.string.isRequired,
-};

@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { getMovieCastReviews } from 'services/api';
 import { Loader } from 'components/Loader/Loader';
 import { BASE_POSTER_URL } from 'constans/constans';
@@ -13,16 +13,17 @@ import {
   NoCasts } from './Cast.styled';
 import { DEFAULT_IMAGE } from 'constans/constans';
 
-const Cast = ({ movieId }) => {
+const Cast = () => {
     const [casts, setCast] = useState(null);
     const [loading, setLoading] = useState(false);
+    const { id } = useParams();
 
     useEffect(() => {
       setLoading(true);
-      getMovieCastReviews(movieId, 'credits').then(data => setCast(data.cast))
+      getMovieCastReviews(id, 'credits').then(data => setCast(data.cast))
       .catch((error) => console.log(error.message))
       .finally(() => setLoading(false));
-    }, [movieId])
+    }, [id])
 
     if (!casts) return;
     return (
@@ -50,7 +51,3 @@ const Cast = ({ movieId }) => {
 }
 
 export default Cast;
-
-Cast.propTypes = {
-  movieId: PropTypes.string.isRequired,
-}
