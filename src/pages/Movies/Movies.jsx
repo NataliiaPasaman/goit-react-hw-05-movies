@@ -24,7 +24,10 @@ const Movies = () => {
     if(!searchParams) return;
 
     setLoading(true);
-    moviesSearchAPI(query).then(response => setSearchMovies(response))
+    moviesSearchAPI(query).then(response => {
+      setSearchMovies(response);
+      setSearchParams('');
+    })
     .catch(error => console.log(error.message))
     .finally(() => setLoading(false));
   };

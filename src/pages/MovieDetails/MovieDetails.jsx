@@ -1,7 +1,6 @@
 import React from 'react';
 import { Suspense } from 'react';
 import { useState, useEffect } from 'react';
-import PropTypes from "prop-types";
 import { Link, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
@@ -22,7 +21,7 @@ import {
   ItemDetails
 } from 'pages/MovieDetails/MovieDetails.styled';
 
-const MovieDetails = ({ getId }) => {
+const MovieDetails = () => {
   const [objectMovie, setObjectMovie] = useState(null);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
@@ -82,7 +81,3 @@ const MovieDetails = ({ getId }) => {
 };
 
 export default MovieDetails;
-
-MovieDetails.propTypes = {
-  getId: PropTypes.func.isRequired,
-}
